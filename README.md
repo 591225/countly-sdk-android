@@ -33,7 +33,7 @@ dependencies {
 &lt;dependency&gt;
     &lt;groupId&gt;ly.count&lt;/groupId&gt;
     &lt;artifactId&gt;sdk-android&lt;/artifactId&gt;
-    &lt;version&gt;14.11&lt;/version&gt;
+    &lt;version&gt;14.11.1&lt;/version&gt;
 &lt;/dependency&gt;
 </pre>
 
@@ -85,7 +85,7 @@ Additionally, make sure that *INTERNET* permission is set if there's none in you
 **Note:** Make sure you use App Key (found under Management -> Applications) and not API Key. Entering API Key will not work. 
 
 ###3. Use Countly Messaging
-Countly can send messages to your users too! To enable it, go to Google API Console and turn GCM on for your app. Then, instead of `ly.count:sdk-android:+` dependency or `sdk-android-14.11.jar`, use `ly.count:sdk-android-messaging:+` and `sdk-android-messaging-14.11.jar` respectively. Additionally, you'll need to enable GCM itself (see `countly-android-example-messaging` folder for example app built with Android Studio):
+Countly can send messages to your users too! To enable it, go to Google API Console and turn GCM on for your app. Then, instead of `ly.count:sdk-android:+` dependency or `sdk-android-14.11.1.jar`, use `ly.count:sdk-android-messaging:+` and `sdk-android-messaging-14.11.1.jar` respectively. Additionally, you'll need to enable GCM itself (see `countly-android-example-messaging` folder for example app built with Android Studio):
 
 **Add extra lines in `AndroidManifest.xml`**
 

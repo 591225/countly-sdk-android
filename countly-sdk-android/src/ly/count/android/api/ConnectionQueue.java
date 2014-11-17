@@ -21,12 +21,15 @@ THE SOFTWARE.
 */
 package ly.count.android.api;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Handler;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 /**
  * ConnectionQueue queues session and event data and periodically sends that data to
@@ -154,14 +157,14 @@ public class ConnectionQueue {
                 + "&" + "locale=" + DeviceInfo.getLocale();
 
         // To ensure begin_session will be fully processed by the server before token_session
-        final Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
+        final ScheduledExecutorService worker = Executors.newSingleThreadScheduledExecutor();
+        worker.schedule(new Runnable() {
             @Override
             public void run() {
                 store_.addConnection(data);
                 tick();
             }
-        }, 5000);
+        }, 10, TimeUnit.SECONDS);
     }
 
     /**
