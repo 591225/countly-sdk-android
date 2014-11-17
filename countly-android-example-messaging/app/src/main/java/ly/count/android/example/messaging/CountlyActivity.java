@@ -10,10 +10,13 @@ import android.os.Bundle;
 import android.util.Log;
 
 import ly.count.android.api.Countly;
+import ly.count.android.api.DeviceId;
 import ly.count.android.api.messaging.CountlyMessaging;
 import ly.count.android.api.messaging.Message;
 
 public class CountlyActivity extends Activity {
+
+    private BroadcastReceiver messageReceiver;
 
     /** Called when the activity is first created. */
     @Override
@@ -42,17 +45,6 @@ public class CountlyActivity extends Activity {
             }
         }, 10000);
 
-        /** Register for broadcast action if you need to be notified when Countly message received */
-        IntentFilter filter = new IntentFilter();
-        filter.addAction(CountlyMessaging.getBroadcastAction(getApplicationContext()));
-        registerReceiver(new BroadcastReceiver() {
-            @Override
-            public void onReceive(Context context, Intent intent) {
-                Message message = intent.getParcelableExtra(CountlyMessaging.BROADCAST_RECEIVER_ACTION_MESSAGE);
-                Log.i("CountlyActivity", "Got a message with data: " + message.getData());
-            }
-        }, filter);
-
     }
 
     @Override
@@ -67,5 +59,28 @@ public class CountlyActivity extends Activity {
     {
         Countly.sharedInstance().onStop();
         super.onStop();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        /** Register for broadcast action if you need to be notified when Countly message received */
+        messageReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                Message message = intent.getParcelableExtra(CountlyMessaging.BROADCAST_RECEIVER_ACTION_MESSAGE);
+                Log.i("CountlyActivity", "Got a message with data: " + message.getData());
+            }
+        };
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(CountlyMessaging.getBroadcastAction(getApplicationContext()));
+        registerReceiver(messageReceiver, filter);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        unregisterReceiver(messageReceiver);
     }
 }
