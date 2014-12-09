@@ -38,7 +38,7 @@ public class Countly {
     /**
      * Current version of the Count.ly Android SDK as a displayable string.
      */
-    public static final String COUNTLY_SDK_VERSION_STRING = "14.11.1";
+    public static final String COUNTLY_SDK_VERSION_STRING = "14.12";
     /**
      * Default string used in the begin session metrics if the
      * app version cannot be found.
@@ -237,7 +237,7 @@ public class Countly {
      * @param activity application activity which acts as a final destination for notifications
      * @param activityClass application activity class which acts as a final destination for notifications
      * @param projectID ProjectID for this app from Google API Console
-     * @param buttonNames Strings to use when displaying Dialogs (uses new String[]{"Open", "Review"} bu default)
+     * @param buttonNames Strings to use when displaying Dialogs (uses new String[]{"Open", "Review"} by default)
      * @param mode whether this app installation is a test release or production
      * @return Countly instance for easy method chaining
      * @throws java.lang.IllegalStateException if no CountlyMessaging class is found (you need to use countly-messaging-sdk-android library instead of countly-sdk-android)

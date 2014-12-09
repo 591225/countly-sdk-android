@@ -140,17 +140,12 @@ public class CountlyMessaging extends WakefulBroadcastReceiver {
     }
 
     public static void storeConfiguration(Context context, String serverURL, String appKey, String deviceID, DeviceId.Type idMode) {
-        String label = "";
-        try {
-            PackageManager p = context.getPackageManager();
-            List<ApplicationInfo> info = p.getInstalledApplications(0);
-            label = p.getApplicationLabel(info.get(0)).toString();
-        } catch (Throwable t) {
-            Log.e(TAG, "Cannot determine app name", t);
-        }
+        String label = context.getString(context.getApplicationInfo().labelRes);
+
         if (Countly.sharedInstance().isLoggingEnabled()) {
             Log.i(TAG, "Storing configuration: " + label + ", " + serverURL + ", " + appKey + ", " + deviceID + ", " + idMode);
         }
+
         getGCMPreferences(context).edit()
                 .putString(PROPERTY_APPLICATION_TITLE, label)
                 .putString(PROPERTY_SERVER_URL, serverURL)

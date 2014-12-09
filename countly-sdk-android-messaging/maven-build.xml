@@ -1,6 +1,6 @@
 <project default="package" xmlns:artifact="antlib:org.apache.maven.artifact.ant">
     <!-- Project properties -->
-    <property name="version.num" value="14.11.1" />
+    <property name="version.num" value="14.12" />
     <property name="project" value="countly-messaging-sdk-android" />
 
     <!-- Standard jar stuff -->
@@ -17,7 +17,7 @@
     <!-- Maven stuff -->
     <property name="groupId" value="ly.count" />
     <property name="artifactId" value="countly-messaging-sdk-android" />
-    <property name="version" value="14.11.1-SNAPSHOT" />
+    <property name="version" value="14.12-SNAPSHOT" />
 
     <!-- defined maven snapshots and staging repository id and url -->
     <property name="ossrh-snapshots-repository-url"
@@ -30,7 +30,7 @@
     <!-- define artifacts' name, which follows the convention of Maven -->
     <property name="jar" value="${dist.dir}/${artifactId}-${version}.jar" />
     <property name="javadoc-jar" value="${dist.dir}/${artifactId}-${version}-javadoc.jar" />
-    <property name="sources-jar" value="${dist.dir}/${artifactId}-${version}-sources.jar" />
+    <property name="sources-jar" value="${dist.dir}/${artifactId}-${version}-src.jar" />
 
     <!-- Set up classpath -->
     <path id="classpath">
